@@ -2,7 +2,7 @@ using UnityEngine;
 
 public sealed class PlayerMove : Move
 {
-    override protected bool IsMove()
+    protected override bool isMove()
     {
         return Input.GetKey(KeyCode.W);  
     }
