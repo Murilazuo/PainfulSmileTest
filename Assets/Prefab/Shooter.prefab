@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 9093580588675128391}
   m_Layer: 0
   m_Name: Shooter
-  m_TagString: Untagged
+  m_TagString: Shooter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,7 +115,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -139,10 +139,17 @@ MonoBehaviour:
   lifeBar: {fileID: 3648386374441656812, guid: 4c563af62a652204595e97367679f87a, type: 3}
   speed: 100
   distanceToStop: 5
-  maxLife: 10
+  maxLife: 2
+  life: 0
   lifeBarHeight: 0.7
-  move: {fileID: 0}
+  destroyStateSprites:
+  - {fileID: 21300000, guid: 6653a02aced7e854e96c76e22a127b61, type: 3}
+  - {fileID: 21300000, guid: 25175afc438e0c74286f5f9e76677825, type: 3}
+  - {fileID: 21300000, guid: 5552d626d4ec2ff47bc3acf8012780de, type: 3}
+  - {fileID: 21300000, guid: e415a5e0752aa9540b80290048535e98, type: 3}
+  timeToDeath: 30
   player: {fileID: 0}
+  damageOnCollision: 2
 --- !u!114 &9093580588675128386
 MonoBehaviour:
   m_ObjectHideFlags: 0

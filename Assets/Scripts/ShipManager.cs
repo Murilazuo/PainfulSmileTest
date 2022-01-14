@@ -10,8 +10,16 @@ public abstract class ShipManager : MonoBehaviour
     [Header("Move Settings")]
     [SerializeField] private float speed;
     [SerializeField] private float distanceToStop;
+    protected Move move;
+    protected ShipRotate shipRotate;
+    private Rigidbody2D rig;
+
+    [Header("Cannon Settings")]
+    [SerializeField] protected float cannonBallSpeed, cannonBallDamage;
+
 
     [Header("Life Settings")]
+    private LifeController lifeController;
     [SerializeField] private float maxLife;
     [SerializeField] internal float life; 
     [SerializeField] private float lifeBarHeight;
@@ -19,10 +27,6 @@ public abstract class ShipManager : MonoBehaviour
     [SerializeField] private float timeToDeath;
 
     [Header("Components")]
-    protected Move move;
-    protected ShipRotate shipRotate;
-    private Rigidbody2D rig;
-    private LifeController lifeController;
     private SpriteRenderer spr;
     private Animator animator;
 
@@ -38,6 +42,8 @@ public abstract class ShipManager : MonoBehaviour
         lifeController = Instantiate(lifeBar,transform.position,Quaternion.identity).GetComponent<LifeController>();
         lifeController.InitializeLifeBar(gameObject, maxLife, lifeBarHeight);
 
+        animator = GetComponent<Animator>();
+
         rig = GetComponent<Rigidbody2D>();
 
         shipRotate.rig = rig;
@@ -45,6 +51,8 @@ public abstract class ShipManager : MonoBehaviour
         move.speed = speed;
         move.rig = rig;
         move.minDistanceToTarget = distanceToStop;
+
+        SetSprite(0);
     }
     
     public void TakeDamage(float damage)
@@ -79,8 +87,9 @@ public abstract class ShipManager : MonoBehaviour
         gameObject.tag = "Untagged";
         rig.constraints = RigidbodyConstraints2D.FreezeAll;
 
-
+        animator.SetTrigger("Death");
         yield return new WaitForSeconds(timeToDeath);
+
 
         Destroy(gameObject);
     }
@@ -90,5 +99,4 @@ public abstract class ShipManager : MonoBehaviour
         Destroy(lifeController.gameObject);
     }
 
-    
 }

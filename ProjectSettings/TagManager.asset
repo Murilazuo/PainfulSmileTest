@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Chaser
   - Shooter
-  - Bullet
+  - CannonBall
   layers:
   - Default
   - TransparentFX

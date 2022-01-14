@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerColision : MonoBehaviour
 {
     [SerializeField] private GameObject explosionFx;
+
     internal PlayerManager playerManager;
     
     private void OnCollisionEnter2D(Collision2D collision)
@@ -18,9 +19,10 @@ public class PlayerColision : MonoBehaviour
                 Instantiate(explosionFx, collision.contacts[0].point, Quaternion.identity);
                 EnemyCollision(collision);
                 break;
-            case "Bullet":
+            case "CannonBall":
                 Instantiate(explosionFx, collision.contacts[0].point, Quaternion.identity);
-
+                playerManager.TakeDamage(collision.gameObject.GetComponent<CannonBall>().damage);
+                Destroy(collision.gameObject);
                 break;
         }
     }
