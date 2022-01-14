@@ -2,7 +2,10 @@ using UnityEngine;
 
 public sealed class EnemyManager : ShipManager
 {
-    Transform player;
+    [Header("Enemy Settings")]
+    [SerializeField] private Transform player;
+    public float damageOnCollision;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -10,5 +13,8 @@ public sealed class EnemyManager : ShipManager
     private void FixedUpdate()
     {
         pointToLook = player.position;
+
+        move.pointToLook = pointToLook;
+        shipRotate.pointToLook = pointToLook;
     }
 }
