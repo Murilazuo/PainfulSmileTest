@@ -30,7 +30,7 @@ public class LifeController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         life -= damage;
-
+        if(life<=0) life=0;
         float lifeNormalize = life / maxLife;
 
         transform.localScale = new Vector2(lifeNormalize, 1);

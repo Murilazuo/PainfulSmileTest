@@ -20,12 +20,12 @@ public abstract class ShipManager : MonoBehaviour
 
 
     [Header("Life Settings")]
-    private LifeController lifeController;
     [SerializeField] private float maxLife;
     [SerializeField] internal float life; 
     [SerializeField] private float lifeBarHeight;
     [SerializeField] private Sprite[] destroyStateSprites;
     [SerializeField] private float timeToDeath;
+    private LifeController lifeController;
 
     [Header("Components")]
     private SpriteRenderer spr;
@@ -66,8 +66,10 @@ public abstract class ShipManager : MonoBehaviour
         if (lifeNormalize <= 0)
         {
             life = 0;
+            
             SetSprite(3);
             StartCoroutine(DestroyShip());
+
         }else if (lifeNormalize < 0.33f)
         {
             SetSprite(2);

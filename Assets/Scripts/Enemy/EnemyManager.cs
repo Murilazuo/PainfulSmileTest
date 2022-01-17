@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public sealed class EnemyManager : ShipManager
+public class EnemyManager : ShipManager
 {
     [Header("Enemy Settings")]
     [SerializeField] private Transform player;
@@ -13,19 +13,25 @@ public sealed class EnemyManager : ShipManager
 
     protected override void OnShipDestroy()
     {
-        enemyShoot.DestroyShip();
+        if(enemyShoot != null)
+        {
+            enemyShoot.DestroyCannon();
+        }
     }
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        enemyShoot = GetComponent<EnemyShoot>();
+        if(GetComponent<EnemyShoot>() != null)
+        {
+            enemyShoot = GetComponent<EnemyShoot>();
 
-        enemyShoot.damage = cannonBallDamage;
-        enemyShoot.speed = cannonBallSpeed;
-        enemyShoot.move = move;
-        enemyShoot.shootColldown = shootCooldown;
-        enemyShoot.enemyManager = this;
+            enemyShoot.damage = cannonBallDamage;
+            enemyShoot.speed = cannonBallSpeed;
+            enemyShoot.move = move;
+            enemyShoot.shootColldown = shootCooldown;
+            enemyShoot.enemyManager = this;
+        }
 
         enemyCollision = GetComponent<EnemyCollision>();
         enemyCollision.enemyManager = this;
