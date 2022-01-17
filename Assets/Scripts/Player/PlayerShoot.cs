@@ -1,45 +1,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(2)]
 public class PlayerShoot : MonoBehaviour
 {
-    [SerializeField] List<Cannon> cannoMidle, CannonLeft, CannonRight;
-    [SerializeField] List<Cannon> cannonActive;
-
+    private List<CannonController> cannons;
+    
+    
+    [Header("Settings")]
     internal float damage, speed;
+
+    private void Start()
+    {
+        cannons = new List<CannonController>();
+
+
+        foreach(Transform cannon in transform)
+        {
+            if(cannon.GetComponent<CannonController>() != null)
+            {
+                CannonController cannonController = cannon.GetComponent<CannonController>();
+
+                cannons.Add(cannonController);
+                cannonController.Initialize(damage, speed, true);
+            }
+        }
+    }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SetCannonActive(cannoMidle);
-        }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            SetCannonActive(CannonLeft);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+            cannons[0].ShootCannons();
+        }else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            SetCannonActive(CannonRight);
-        }
-
-        if (Input.GetMouseButtonDown(0))
+            cannons[1].ShootCannons();
+        }else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            ShootCannon();
-        }
-    }
-    void SetCannonActive(List<Cannon> cannons)
-    {
-
-        cannonActive.Clear();
-
-        cannonActive = cannons;
-    }
-    void ShootCannon()
-    {
-        foreach(Cannon cannon in cannonActive)
-        {
-            cannon.Shoot(damage, speed, true);
+            cannons[2].ShootCannons();
         }
     }
 }

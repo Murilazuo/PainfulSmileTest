@@ -11,13 +11,15 @@ GameObject:
   - component: {fileID: 7935893104603672842}
   - component: {fileID: 7935893104603672845}
   - component: {fileID: 7935893104603672844}
+  - component: {fileID: 1081532979}
   - component: {fileID: 7935893104603672847}
   - component: {fileID: 7935893104603672846}
   - component: {fileID: 7935893104603672833}
   - component: {fileID: 7935893104603672832}
+  - component: {fileID: 8528093713038502108}
   m_Layer: 0
   m_Name: Chaser
-  m_TagString: Chaser
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,6 +105,25 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.15, y: 0.24}
   m_Direction: 0
+--- !u!95 &1081532979
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7935893104603672835}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1470c6a1bc72f44479e0ad3870ffbd52, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!50 &7935893104603672847
 Rigidbody2D:
   serializedVersion: 4
@@ -139,6 +160,8 @@ MonoBehaviour:
   lifeBar: {fileID: 3648386374441656812, guid: 4c563af62a652204595e97367679f87a, type: 3}
   speed: 100
   distanceToStop: 0
+  cannonBallSpeed: 0
+  cannonBallDamage: 0
   maxLife: 2
   life: 0
   lifeBarHeight: 0.3
@@ -149,6 +172,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8d674a55e22209543bcc97d4d4f860a1, type: 3}
   timeToDeath: 30
   player: {fileID: 0}
+  shootCooldown: 3
   damageOnCollision: 2
 --- !u!114 &7935893104603672833
 MonoBehaviour:
@@ -176,3 +200,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100
   minDistanceToTarget: 5
+--- !u!114 &8528093713038502108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7935893104603672835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff06ea6b04900342a566b9b15234b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

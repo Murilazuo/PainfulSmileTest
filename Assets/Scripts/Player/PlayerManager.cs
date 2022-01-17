@@ -1,10 +1,16 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(0)]
 public sealed class PlayerManager : ShipManager
 {
+    [Header("Player Components")]
     Camera cam;
     PlayerColision playerColision;
-    PlayerShoot playerShootController;
+    PlayerShoot playerShoot;
+
+    protected override void OnShipDestroy(){
+    }
+
     private void Start()
     {
         cam = Camera.main; 
@@ -12,9 +18,9 @@ public sealed class PlayerManager : ShipManager
         playerColision = GetComponent<PlayerColision>();
         playerColision.playerManager = this;
 
-        playerShootController = GetComponent<PlayerShoot>();
-        playerShootController.damage = cannonBallDamage;
-        playerShootController.speed = cannonBallSpeed; 
+        playerShoot = GetComponent<PlayerShoot>();
+        playerShoot.damage = cannonBallDamage;
+        playerShoot.speed = cannonBallSpeed; 
     }
     void FixedUpdate()
     {

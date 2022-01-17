@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public sealed class EnemyMove : Move
+public sealed class EnemyMove : ShipMove
 {
-    protected override bool isMove()
+    protected override bool IsMove()
     {
         return true;
     }

@@ -10,30 +10,24 @@ public class PlayerColision : MonoBehaviour
     {
         switch (collision.gameObject.tag)
         {
-            case "Chaser":
+            case "Enemy":
                 Instantiate(explosionFx, collision.contacts[0].point,Quaternion.identity);
-                EnemyCollision(collision);
-                break;
+                
+                EnemyManager enemyManager = collision.gameObject.GetComponent<EnemyManager>();
 
-            case "Shooter":
-                Instantiate(explosionFx, collision.contacts[0].point, Quaternion.identity);
-                EnemyCollision(collision);
+                float damageCollision = enemyManager.damageOnCollision;
+
+                playerManager.TakeDamage(damageCollision);
+                enemyManager.TakeDamage(damageCollision);
+
                 break;
             case "CannonBall":
                 Instantiate(explosionFx, collision.contacts[0].point, Quaternion.identity);
+                
                 playerManager.TakeDamage(collision.gameObject.GetComponent<CannonBall>().damage);
+                
                 Destroy(collision.gameObject);
                 break;
         }
-    }
-    
-    void EnemyCollision(Collision2D coll)
-    {
-        EnemyManager enemyManager = coll.gameObject.GetComponent<EnemyManager>();
-
-        float damageCollision = enemyManager.damageOnCollision;
-
-        playerManager.TakeDamage(damageCollision);
-        enemyManager.TakeDamage(damageCollision);
     }
 }

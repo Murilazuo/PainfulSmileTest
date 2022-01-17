@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public sealed class PlayerMove : Move
+public sealed class PlayerMove : ShipMove
 {
-    protected override bool isMove()
+    protected override bool IsMove()
     {
         return Input.GetKey(KeyCode.W);  
     }

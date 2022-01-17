@@ -10,12 +10,13 @@ public abstract class ShipManager : MonoBehaviour
     [Header("Move Settings")]
     [SerializeField] private float speed;
     [SerializeField] private float distanceToStop;
-    protected Move move;
+    protected ShipMove move;
     protected ShipRotate shipRotate;
     private Rigidbody2D rig;
 
     [Header("Cannon Settings")]
-    [SerializeField] protected float cannonBallSpeed, cannonBallDamage;
+    [SerializeField] protected float cannonBallSpeed;
+    [SerializeField] protected float cannonBallDamage;
 
 
     [Header("Life Settings")]
@@ -32,12 +33,13 @@ public abstract class ShipManager : MonoBehaviour
 
     internal Vector2 pointToLook;
 
+    protected abstract void OnShipDestroy();
     void Awake()
     {
         life = maxLife;
 
         shipRotate = GetComponent<ShipRotate>();
-        move = GetComponent<Move>();
+        move = GetComponent<ShipMove>();
         spr = GetComponent<SpriteRenderer>();
         lifeController = Instantiate(lifeBar,transform.position,Quaternion.identity).GetComponent<LifeController>();
         lifeController.InitializeLifeBar(gameObject, maxLife, lifeBarHeight);
@@ -82,6 +84,8 @@ public abstract class ShipManager : MonoBehaviour
     }
     IEnumerator DestroyShip()
     {
+        OnShipDestroy();
+
         shipRotate.enabled = false;
         move.enabled = false;
         gameObject.tag = "Untagged";
@@ -91,12 +95,8 @@ public abstract class ShipManager : MonoBehaviour
         yield return new WaitForSeconds(timeToDeath);
 
 
-        Destroy(gameObject);
-    }
-    
-    private void OnDestroy()
-    {
         Destroy(lifeController.gameObject);
+        Destroy(gameObject);
     }
 
 }

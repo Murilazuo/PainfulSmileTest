@@ -2,21 +2,17 @@ using UnityEngine;
 
 public class EnemyCollision : MonoBehaviour
 {
-    EnemyManager enemyManager;
-    private void Start()
-    {
-        enemyManager = GetComponent<EnemyManager>();
-    }
+    internal EnemyManager enemyManager;
+  
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("CannonBall"))
         {
             CannonBall cannonBall = collision.collider.GetComponent<CannonBall>();
             
-            if (cannonBall.playerCannon)
-            {
-                enemyManager.TakeDamage(cannonBall.damage);
-            }
+            enemyManager.TakeDamage(cannonBall.damage);
+
+            Destroy(cannonBall.gameObject);
         }
     }
 }

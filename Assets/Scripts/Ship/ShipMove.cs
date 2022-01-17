@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Move : MonoBehaviour
+public abstract class ShipMove : MonoBehaviour
 {
     [Header("Components")]
     internal Rigidbody2D rig;
@@ -10,14 +10,16 @@ public abstract class Move : MonoBehaviour
     [SerializeField] internal float minDistanceToTarget;
 
     internal Vector2 pointToLook;
+    internal int move;
 
-    protected abstract bool isMove();
+
+    protected abstract bool IsMove();
 
     private void FixedUpdate()
     {
-        int move = 0;
+        move = 0;
 
-        if (isMove() && Vector2.Distance(rig.position, pointToLook) > minDistanceToTarget)
+        if (IsMove() && Vector2.Distance(rig.position, pointToLook) > minDistanceToTarget)
         {
             move = 1;
         }

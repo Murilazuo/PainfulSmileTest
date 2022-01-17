@@ -20,9 +20,12 @@ public class LifeController : MonoBehaviour
         life = maxLife;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        transform.position = new Vector2(target.position.x - 0.5f, target.position.y + barHeight);
+        if(target != null)
+        {
+            transform.position = new Vector2(target.position.x - 0.5f, target.position.y + barHeight);
+        }
     }
     public void TakeDamage(float damage)
     {
