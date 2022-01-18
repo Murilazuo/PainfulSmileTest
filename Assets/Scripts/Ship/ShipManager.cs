@@ -6,6 +6,7 @@ public abstract class ShipManager : MonoBehaviour
 {
     [Header("Prefabs")]
     [SerializeField] private GameObject lifeBar;
+    [SerializeField] private GameObject explosion;
 
     [Header("Move Settings")]
     [SerializeField] private float speed;
@@ -91,9 +92,11 @@ public abstract class ShipManager : MonoBehaviour
     }
     IEnumerator DestroyShip()
     {
+        death = true;
+        
         OnShipDestroy();
 
-        death = true;
+        Instantiate(explosion, transform.position, Quaternion.identity);
 
         shipRotate.enabled = false;
         move.enabled = false;
