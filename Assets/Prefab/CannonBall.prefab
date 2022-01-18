@@ -100,8 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   playerCannon: 0
-  timeToDestroy: 3
-  cannonBall: {fileID: 3296496374324946793, guid: 56584cb470a57e54280aa2c68d819010, type: 3}
+  timeToDestroy: 5
+  explosion: {fileID: 3296496374324946793, guid: 56584cb470a57e54280aa2c68d819010, type: 3}
 --- !u!50 &5337177397690208324
 Rigidbody2D:
   serializedVersion: 4

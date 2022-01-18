@@ -6,7 +6,7 @@ TagManager:
   tags:
   - CannonBall
   - Enemy
-  - ground
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -17,7 +17,7 @@ TagManager:
   - Player
   - Ground
   - CannonBall
-  - 
+  - Rock
   - 
   - 
   - 

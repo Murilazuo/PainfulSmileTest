@@ -11,7 +11,7 @@ public class EnemyShoot : MonoBehaviour
     [Header("Settings")]
     internal float shootColldown;
     internal float damage, speed;
-
+    private bool canShoot = true;
     private void Start()
     {
         cannon = GetComponentInChildren<Cannon>();
@@ -21,13 +21,13 @@ public class EnemyShoot : MonoBehaviour
 
     internal void DestroyCannon()
     {
-        GetComponent<SpriteRenderer>().enabled = false;
-        cannon.GetComponent<SpriteRenderer>().color = Color.clear;
         StopCoroutine(Shoot());
+        canShoot = false;
+        cannon.DestroyCannon();
     }
     IEnumerator Shoot()
     {
-        while (true)
+        while (canShoot)
         {
             yield return new WaitForSeconds(shootColldown);
             

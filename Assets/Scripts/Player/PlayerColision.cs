@@ -22,8 +22,6 @@ public class PlayerColision : MonoBehaviour
 
                 break;
             case "CannonBall":
-                Instantiate(explosionFx, collision.contacts[0].point, Quaternion.identity);
-                
                 playerManager.TakeDamage(collision.gameObject.GetComponent<CannonBall>().damage);
                 
                 Destroy(collision.gameObject);

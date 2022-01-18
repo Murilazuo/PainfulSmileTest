@@ -4,11 +4,15 @@ using UnityEngine;
 public sealed class PlayerManager : ShipManager
 {
     [Header("Player Components")]
-    Camera cam;
-    PlayerColision playerColision;
-    PlayerShoot playerShoot;
+    private Camera cam;
+    private PlayerColision playerColision;
+    private PlayerShoot playerShoot;
 
     protected override void OnShipDestroy(){
+        foreach(CannonController cannons in playerShoot.cannons){
+            cannons.DestroyCannon();
+        }
+        
     }
 
     private void Start()

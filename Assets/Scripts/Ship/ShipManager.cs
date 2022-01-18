@@ -26,6 +26,7 @@ public abstract class ShipManager : MonoBehaviour
     [SerializeField] private Sprite[] destroyStateSprites;
     [SerializeField] private float timeToDeath;
     private LifeController lifeController;
+    private bool death = false;
 
     [Header("Components")]
     private SpriteRenderer spr;
@@ -59,6 +60,8 @@ public abstract class ShipManager : MonoBehaviour
     
     public void TakeDamage(float damage)
     {
+        if (death) return;
+
         life -= damage;
 
         float lifeNormalize = life / maxLife;
@@ -77,8 +80,10 @@ public abstract class ShipManager : MonoBehaviour
         {
             SetSprite(1);
         }
-
-        lifeController.TakeDamage(damage);
+        if(lifeController != null)
+        {
+            lifeController.TakeDamage(damage);
+        }
     }
     void SetSprite(int spriteId)
     {
@@ -88,16 +93,19 @@ public abstract class ShipManager : MonoBehaviour
     {
         OnShipDestroy();
 
+        death = true;
+
         shipRotate.enabled = false;
         move.enabled = false;
-        gameObject.tag = "Untagged";
         rig.constraints = RigidbodyConstraints2D.FreezeAll;
 
+        GetComponent<Collider2D>().enabled = false;
+
         animator.SetTrigger("Death");
+        Destroy(lifeController.gameObject);
+
         yield return new WaitForSeconds(timeToDeath);
 
-
-        Destroy(lifeController.gameObject);
         Destroy(gameObject);
     }
 

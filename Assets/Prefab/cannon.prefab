@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1201542327899491668}
   - component: {fileID: 1201542327899491671}
   - component: {fileID: 3176319680033632547}
+  - component: {fileID: 393531851388659843}
   m_Layer: 0
   m_Name: cannon
   m_TagString: Untagged
@@ -96,3 +97,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CannonBall: {fileID: 3551400545207703987, guid: 00528ea14adfa164fb9b273a01ab7330, type: 3}
+--- !u!95 &393531851388659843
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201542327899491669}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1470c6a1bc72f44479e0ad3870ffbd52, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

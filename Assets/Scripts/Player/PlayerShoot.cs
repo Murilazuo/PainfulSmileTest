@@ -4,8 +4,7 @@ using UnityEngine;
 [DefaultExecutionOrder(2)]
 public class PlayerShoot : MonoBehaviour
 {
-    private List<CannonController> cannons;
-    
+    internal List<CannonController> cannons;
     
     [Header("Settings")]
     internal float damage, speed;
@@ -13,7 +12,6 @@ public class PlayerShoot : MonoBehaviour
     private void Start()
     {
         cannons = new List<CannonController>();
-
 
         foreach(Transform cannon in transform)
         {

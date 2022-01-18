@@ -5,11 +5,13 @@ public class EnemyManager : ShipManager
     [Header("Enemy Settings")]
     [SerializeField] private Transform player;
     [SerializeField] private float shootCooldown = 3f;
+    [SerializeField] private int scoreDrop = 1;
     public float damageOnCollision;
 
     [Header("Enemy Components")]
-    EnemyShoot enemyShoot;
-    EnemyCollision enemyCollision;
+    private EnemyShoot enemyShoot;
+    private EnemyCollision enemyCollision;
+    private GameManager gameManager;
 
     protected override void OnShipDestroy()
     {
@@ -17,10 +19,13 @@ public class EnemyManager : ShipManager
         {
             enemyShoot.DestroyCannon();
         }
+
+        gameManager.AddScore(scoreDrop);
     }
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
         if(GetComponent<EnemyShoot>() != null)
         {
@@ -35,6 +40,8 @@ public class EnemyManager : ShipManager
 
         enemyCollision = GetComponent<EnemyCollision>();
         enemyCollision.enemyManager = this;
+
+        gameManager = GameManager.instance;
     }
     private void FixedUpdate()
     {

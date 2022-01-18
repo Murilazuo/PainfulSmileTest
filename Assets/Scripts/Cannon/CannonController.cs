@@ -27,7 +27,13 @@ public class CannonController : MonoBehaviour
             }
         }
     }
-
+    public void DestroyCannon()
+    {
+        foreach(Cannon cannon in cannons)
+        {
+            cannon.DestroyCannon();
+        }
+    }
     public void ShootCannons()
     {
         foreach(Cannon cannon in cannons)

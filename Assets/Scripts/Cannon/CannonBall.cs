@@ -7,7 +7,7 @@ public class CannonBall : MonoBehaviour
     public float damage;
     public bool playerCannon;
     [SerializeField] private float timeToDestroy = 3f;
-    [SerializeField] private GameObject cannonBall;
+    [SerializeField] private GameObject explosion;
 
     [Header("Components")]
     Rigidbody2D rig;
@@ -26,10 +26,16 @@ public class CannonBall : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("CannonBall"))
+        switch (collision.collider.tag)
         {
-            Instantiate(cannonBall, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            case "Ground":
+            case "CannonBall":
+                Destroy(gameObject);
+                break;
         }
+    }
+    private void OnDestroy()
+    {
+        Instantiate(explosion, transform.position, Quaternion.identity);
     }
 }

@@ -1,40 +1,69 @@
 using System.Collections;
+using System;
 using UnityEngine;
 
+public struct GameStats
+{
+    public int score;
+    public float gameSession;
+    public bool won;
+}
+[DefaultExecutionOrder(-3)]
 public class GameManager : MonoBehaviour
 {
-    public static float timeToSpanwEnemy = 2f;
+    [Header("Game Settings")]
+    public static float timeToSpanwEnemy = 10f;
     public static float gameSession = 180f;
 
+    [Header("Enemys")]
     [SerializeField] private GameObject[] enemyPrefab;
     [SerializeField] private Transform[] spawnSpot;
 
-    public float CurrentGameSession = 0;
-
+    [Header("Game Score")]
+    public float currentGameSessionTime = 0;
+    public int score = 0;
+    public static 
     bool endGame = false;
+    private ScoreUi scoreUi;
 
+    public static event Action<GameStats> OnGameEnd;
+
+
+    public static GameManager instance;
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
+        scoreUi = FindObjectOfType<ScoreUi>();
+
         StartCoroutine(SpawnEnemy());
     }
-
+    public void AddScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+        scoreUi.UpdateScore(score);
+    }
     private void Update()
     {
-        if (CurrentGameSession >= gameSession && endGame)
+        if (endGame) return;
+
+        if (currentGameSessionTime >= gameSession)
         {
-            endGame = true;
-        }else if (endGame == false)
+            WonGame();
+        }else
         {
-            CurrentGameSession += Time.deltaTime;
+            currentGameSessionTime += Time.deltaTime;
         }
     }
     private IEnumerator SpawnEnemy()
     {
-        while (true)
+        while (!endGame)
         {
-            int percentage = Random.Range(0,100);
-            int spawnSpotId = Random.Range(0,spawnSpot.Length);
-            int enemyId = 0;
+            int percentage = UnityEngine.Random.Range(0,100);
+            int spawnSpotId = UnityEngine.Random.Range(0,spawnSpot.Length);
+            int enemyId;
 
             if(percentage > 50)
             {
@@ -49,5 +78,33 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(timeToSpanwEnemy);
         }
     }
+    void WonGame()
+    {
+        GameStats gameStats = new GameStats();
 
+        currentGameSessionTime = gameSession;
+
+        gameStats.won = true;
+
+        EndGame(gameStats);
+    }
+    public void LoseGame()
+    {
+        GameStats gameStats = new GameStats();
+
+        gameStats.won = false;
+
+        EndGame(gameStats);
+    }
+
+    private void EndGame(GameStats gameStats)
+    {
+        gameStats.gameSession = currentGameSessionTime;
+        gameStats.score = score;
+        
+        OnGameEnd(gameStats);
+        endGame = true;
+        
+        StopCoroutine(SpawnEnemy());
+    }
 }

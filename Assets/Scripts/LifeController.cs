@@ -3,17 +3,20 @@ using UnityEngine;
 public class LifeController : MonoBehaviour
 {
     [Header("Variable")]
-    [SerializeField] private float maxLife,life;
+    [SerializeField] private float fillSpeed;
+    private float maxLife,life;
     private float barHeight;
 
     [Header("Components")]
     private Transform target;
+    [SerializeField]private Transform bar;
 
     public void InitializeLifeBar( GameObject objectToFollow, float maxLifeToSet, float setBarHeight)
     {
         gameObject.name = objectToFollow.name + " Bar";
 
         target = objectToFollow.transform;
+
         barHeight = setBarHeight;
 
         maxLife = maxLifeToSet;
@@ -30,9 +33,15 @@ public class LifeController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         life -= damage;
-        if(life<=0) life=0;
+
+        if (life <= 0)
+        {
+            life = 0;
+
+           // Destroy(gameObject);
+        }
         float lifeNormalize = life / maxLife;
 
-        transform.localScale = new Vector2(lifeNormalize, 1);
+        bar.transform.localScale = new Vector2(lifeNormalize, 1);
     }
 }
