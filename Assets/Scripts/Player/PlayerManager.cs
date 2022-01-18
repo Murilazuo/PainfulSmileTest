@@ -23,8 +23,8 @@ public sealed class PlayerManager : ShipManager
         playerColision.playerManager = this;
 
         playerShoot = GetComponent<PlayerShoot>();
-        playerShoot.damage = cannonBallDamage;
-        playerShoot.speed = cannonBallSpeed; 
+
+        playerShoot.InitializrCannons(cannonBallDamage, cannonBallSpeed);
     }
     void FixedUpdate()
     {

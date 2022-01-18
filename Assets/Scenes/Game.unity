@@ -4924,14 +4924,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2876102427490564813, guid: 5862312d3ffb609498c1b04701382047, type: 3}
-      propertyPath: cannonBallSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2876102427490564813, guid: 5862312d3ffb609498c1b04701382047, type: 3}
-      propertyPath: cannonBallDamage
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2876102427490564822, guid: 5862312d3ffb609498c1b04701382047, type: 3}
       propertyPath: m_RootOrder
       value: 2

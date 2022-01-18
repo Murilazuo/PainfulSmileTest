@@ -159,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeBar: {fileID: 3648386374441656812, guid: 4c563af62a652204595e97367679f87a, type: 3}
   explosion: {fileID: 3296496374324946793, guid: 56584cb470a57e54280aa2c68d819010, type: 3}
-  speed: 100
+  speed: 150
   distanceToStop: 0
   cannonBallSpeed: 0
   cannonBallDamage: 0
@@ -175,7 +175,7 @@ MonoBehaviour:
   player: {fileID: 0}
   shootCooldown: 3
   scoreDrop: 1
-  damageOnCollision: 2
+  damageOnCollision: 5
 --- !u!114 &7935893104603672833
 MonoBehaviour:
   m_ObjectHideFlags: 0

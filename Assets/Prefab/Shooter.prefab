@@ -163,7 +163,7 @@ MonoBehaviour:
   explosion: {fileID: 3296496374324946793, guid: 56584cb470a57e54280aa2c68d819010, type: 3}
   speed: 100
   distanceToStop: 5
-  cannonBallSpeed: 2
+  cannonBallSpeed: 3
   cannonBallDamage: 2
   maxLife: 5
   life: 0

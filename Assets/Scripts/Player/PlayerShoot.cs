@@ -1,15 +1,14 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 [DefaultExecutionOrder(2)]
 public class PlayerShoot : MonoBehaviour
 {
     internal List<CannonController> cannons;
-    
-    [Header("Settings")]
-    internal float damage, speed;
-
-    private void Start()
+    float shootCooldown = 1f;
+    bool canShoot = true;
+    internal void InitializrCannons(float damage, float speed)
     {
         cannons = new List<CannonController>();
 
@@ -20,6 +19,7 @@ public class PlayerShoot : MonoBehaviour
                 CannonController cannonController = cannon.GetComponent<CannonController>();
 
                 cannons.Add(cannonController);
+
                 cannonController.Initialize(damage, speed, true);
             }
         }
@@ -27,15 +27,30 @@ public class PlayerShoot : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (canShoot)
         {
-            cannons[0].ShootCannons();
-        }else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            cannons[1].ShootCannons();
-        }else if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            cannons[2].ShootCannons();
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                Shoot(0);
+            }else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                Shoot(1);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                Shoot(2);
+            }
         }
+    }
+    private void Shoot(int cannonId)
+    {
+        cannons[cannonId].ShootCannons();
+        StartCoroutine(ShootCooldown());
+    }
+    IEnumerator ShootCooldown()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(shootCooldown);
+        canShoot = true;
     }
 }

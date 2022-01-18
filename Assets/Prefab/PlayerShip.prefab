@@ -192,9 +192,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeBar: {fileID: 3648386374441656812, guid: 4c563af62a652204595e97367679f87a, type: 3}
+  explosion: {fileID: 3296496374324946793, guid: 56584cb470a57e54280aa2c68d819010, type: 3}
   speed: 150
   distanceToStop: 0.5
-  cannonBallSpeed: 30
+  cannonBallSpeed: 3
   cannonBallDamage: 3
   maxLife: 10
   life: 0
