@@ -35,7 +35,7 @@ public class EndGame : MonoBehaviour
         }
 
         endGameText.text = firtText + "\n" + scoreText + string.Format(" {0}.\n", gameStats.score) + 
-        timeText + string.Format(" {0}.",SessionTimeController.TimeConverter(gameStats.gameSession/60));
+        timeText + string.Format(" {0}.",GameStatsController.TimeConverter(gameStats.gameSession/60));
 
         animator.SetTrigger("EndGame");
     }

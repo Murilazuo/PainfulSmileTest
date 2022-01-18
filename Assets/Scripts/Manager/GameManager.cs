@@ -13,17 +13,17 @@ public class GameManager : MonoBehaviour
 {
     [Header("Game Settings")]
     public static float timeToSpanwEnemy = 10f;
-    public static float gameSession = 180f;
+    public static float gameSession = 120f;
 
     [Header("Enemys")]
     [SerializeField] private GameObject[] enemyPrefab;
     [SerializeField] private Transform[] spawnSpot;
 
     [Header("Game Score")]
-    public float currentGameSessionTime = 0;
+    public float currentGameSessionTime;
     public int score = 0;
     public static 
-    bool endGame = false;
+    bool endGame;
     private ScoreUi scoreUi;
 
     public static event Action<GameStats> OnGameEnd;
@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         scoreUi = FindObjectOfType<ScoreUi>();
+
+        currentGameSessionTime = 0;
+        endGame = false;
 
         StartCoroutine(SpawnEnemy());
     }
@@ -99,6 +102,9 @@ public class GameManager : MonoBehaviour
 
     private void EndGame(GameStats gameStats)
     {
+        FindObjectOfType<ScoreUi>().gameObject.SetActive(false);
+        FindObjectOfType<Timer>().gameObject.SetActive(false);
+
         gameStats.gameSession = currentGameSessionTime;
         gameStats.score = score;
         

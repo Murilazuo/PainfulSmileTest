@@ -624,11 +624,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 945137014}
         m_TargetAssemblyTypeName: SessionTimeController, Assembly-CSharp
-        m_MethodName: SetSessionTimeText
-        m_Mode: 2
+        m_MethodName: SetSlider
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 945137013}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1260,11 +1260,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1396268416}
         m_TargetAssemblyTypeName: SessionTimeController, Assembly-CSharp
-        m_MethodName: SetSessionTimeText
-        m_Mode: 2
+        m_MethodName: SetSlider
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1396268415}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

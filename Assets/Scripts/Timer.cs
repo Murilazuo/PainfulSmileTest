@@ -14,8 +14,8 @@ public class Timer : MonoBehaviour
 
     void FixedUpdate()
     {
-        string sessionTime = SessionTimeController.TimeConverter(gameManager.currentGameSessionTime / 60);
-        string maxSessionTime = SessionTimeController.TimeConverter(GameManager.gameSession / 60);
+        string sessionTime = GameStatsController.TimeConverter(gameManager.currentGameSessionTime / 60);
+        string maxSessionTime = GameStatsController.TimeConverter(GameManager.gameSession / 60);
 
         text.text = string.Format("{0} / {1}", sessionTime, maxSessionTime);
     }

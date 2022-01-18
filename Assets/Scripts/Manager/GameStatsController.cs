@@ -2,14 +2,35 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum SettingsTime{ SessionTime, EnemySpawnTime}
-public class SessionTimeController : MonoBehaviour
+public class GameStatsController : MonoBehaviour
 {
     [SerializeField] private SettingsTime settingsTime;
     [SerializeField] private Text SessiontTimeText;
-    public void SetSessionTimeText(Slider slider)
+    private Slider slider;
+
+    private void Start()
+    {
+        slider = GetComponent<Slider>();
+
+        switch (settingsTime)
+        {
+            case SettingsTime.SessionTime:
+                slider.value = GameManager.gameSession / 60;
+                break;
+            case SettingsTime.EnemySpawnTime:
+                slider.value = GameManager.timeToSpanwEnemy / 60;
+                break;
+        }
+    }
+    public void SetSlider()
     {
         SessiontTimeText.text = TimeConverter(slider.value);
 
+        UpdateValue();
+    }
+
+    private void UpdateValue()
+    {
         switch (settingsTime)
         {
             case SettingsTime.SessionTime:
